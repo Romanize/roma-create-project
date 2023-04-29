@@ -4,6 +4,7 @@ import { createDirectoryContents } from './createDirectoryContents.js';
 import { QUESTIONS } from './questions.js';
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
+import { editPackageJson } from './editPackageJson.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -17,4 +18,5 @@ inquirer.prompt(QUESTIONS).then(answers => {
   fs.mkdirSync(`${CURR_DIR}/${projectName}`);
 
   createDirectoryContents(templatePath, projectName);
+  editPackageJson(projectName);
 });
