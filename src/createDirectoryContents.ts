@@ -16,6 +16,9 @@ export function createDirectoryContents(templatePath: string, newProjectPath: st
       const writePath = `${CURR_DIR}/${newProjectPath}/${file}`;
       fs.writeFileSync(writePath, contents, 'utf8');
     } else if (stats.isDirectory()) {
+      // abort copying node_modules
+      if (file === 'node_modules') return;
+
       fs.mkdirSync(`${CURR_DIR}/${newProjectPath}/${file}`);
 
       // recursive call
